@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="saudacao">
+        <item>Sr</item>
+        <item>Sra</item>
+        <item>Dr</item>
+        <item>Dra</item>
+        <item>Sem tratamento</item>
+    </string-array>
+</resources>
