@@ -10,14 +10,15 @@ class SaudacaoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_saudacao)
 
+        // instancia um container para local storage chamado saudacao no modo privado
         val saudacaoPersistencia = this.getSharedPreferences("saudacao", Context.MODE_PRIVATE)
 
+        // trazer valor da chave para uma constante, o segundo parâmetro é um valor default para evitar null pointer
         val nome = saudacaoPersistencia.getString("nome", "")
         val tratamento = saudacaoPersistencia.getString("tratamento", "")
 
-        println("nome --> $nome")
-        println("tratamento --> $tratamento")
         if(tratamento.equals("Sem Tratamento")){
+            // mostrar texto na label
             lbSaudacao.text = nome
         }
         else {
