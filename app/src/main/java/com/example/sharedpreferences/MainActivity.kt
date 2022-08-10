@@ -16,14 +16,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // instancia a classe DatabaseManager
+        val db = DatabaseManager(this, "SAUDACAO")
+
+
         // adicionar listener de click no botao
         btnSalvar.setOnClickListener(View.OnClickListener {
 
-            // concatenar valores para guardar no file stream
-            val data = txtNome.text.toString() + ":" + listTratamento.selectedItem.toString()
+            // remove o primeiro registro de saudação
+            db.removeSaudacao()
 
-            //chama método gravaDadoArquivo
-            gravaDadoArquivo("saudacao", data)
+            // insere uma saudação de acordo com o input do app
+            db.insereSaudacao(1, txtNome.text.toString(), listTratamento.selectedItem.toString())
 
             // toast para notificar sucesso no salvamento
             Toast.makeText(this, "Salvo com Sucesso", Toast.LENGTH_SHORT).show()
@@ -37,18 +41,5 @@ class MainActivity : AppCompatActivity() {
         })
 
 
-    }
-
-    fun gravaDadoArquivo(fileName: String, data: String) {
-        try{
-            // openFileOutput método para guardar informações locais num arquivo dentro do contexto da aplicação
-            val fs = openFileOutput(fileName, Context.MODE_PRIVATE)
-            // escrever no arquivo os dados convertidos para um array de bytes
-            fs.write(data.toByteArray())
-            // fecha os streams e libera os recursos para escrever arquivos
-            fs.close()
-        }
-        catch (e: FileNotFoundException) { Log.i("gravaDadoArquivo", "FileNotFoundException")}
-        catch (e: IOException) { Log.i("gravaDadoArquivo", "IOException")}
     }
 }
