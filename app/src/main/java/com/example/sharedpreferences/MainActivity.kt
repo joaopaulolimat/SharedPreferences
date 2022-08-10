@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
             editor.putString("nome", txtNome.text.toString())
             editor.putString("tratamento", listTratamento.selectedItem.toString())
+            editor.apply()
 
             Toast.makeText(this, "Salvo com Sucesso", Toast.LENGTH_SHORT).show()
         })

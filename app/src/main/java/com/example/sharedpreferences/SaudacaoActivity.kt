@@ -15,6 +15,8 @@ class SaudacaoActivity : AppCompatActivity() {
         val nome = saudacaoPersistencia.getString("nome", "")
         val tratamento = saudacaoPersistencia.getString("tratamento", "")
 
+        println("nome --> $nome")
+        println("tratamento --> $tratamento")
         if(tratamento.equals("Sem Tratamento")){
             lbSaudacao.text = nome
         }
