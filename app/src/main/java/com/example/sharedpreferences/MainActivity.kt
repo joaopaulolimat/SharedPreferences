@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         try{
             // openFileOutput método para guardar informações locais num arquivo dentro do contexto da aplicação
             val fs = openFileOutput(fileName, Context.MODE_PRIVATE)
-            // escrever no arquivo
+            // escrever no arquivo os dados convertidos para um array de bytes
             fs.write(data.toByteArray())
             // fecha os streams e libera os recursos para escrever arquivos
             fs.close()
