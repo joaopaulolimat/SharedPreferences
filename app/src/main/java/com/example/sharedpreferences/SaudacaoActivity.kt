@@ -20,14 +20,17 @@ class SaudacaoActivity : AppCompatActivity() {
         // instancia o DatabaseManager
         val db = DatabaseManager(this, "SAUDACAO")
 
-        // constante que arma
+        // constante que armazena um cursor com o retorno do select da base de dados
         val cursor = db.listaSaudacao()
 
         var nome= ""
         var tratamento = ""
 
+        // se há registros dentro do cursor
         if(cursor.count >= 0){
+            // pega o próximo registro do cursor
             cursor.moveToFirst()
+            // pega o conteúdo dentro da coluna indicada
             nome = cursor.getString(cursor.getColumnIndex("NOME"))
             tratamento = cursor.getString(cursor.getColumnIndex("TRATAMENTO"))
         }

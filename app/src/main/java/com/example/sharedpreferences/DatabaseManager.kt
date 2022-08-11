@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper
 
 class DatabaseManager(context: Context, name: String?) : SQLiteOpenHelper(context,name, null, 1 ) {
 
+    // na criação da classe executa a criação da tabela
     override fun onCreate(p0: SQLiteDatabase?) {
         p0?.execSQL("CREATE TABLE SAUDACAO(\n" +
                 "\tID_SAUDACAO INT NOT NULL,\n" +
@@ -17,8 +18,11 @@ class DatabaseManager(context: Context, name: String?) : SQLiteOpenHelper(contex
                 "\t);")
     }
 
+    // função chamada quando há necessidade de atualização do banco de dados.
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
+        // apagar a tabela se ela existir
         p0?.execSQL("DROP TABLE IF EXISTS SAUDACAO")
+        // criar a tabela
         p0?.execSQL("CREATE TABLE SAUDACAO(\n" +
                 "\tID_SAUDACAO INT NOT NULL,\n" +
                 "\tNOME VARCHAR(20),\n" +
@@ -28,11 +32,16 @@ class DatabaseManager(context: Context, name: String?) : SQLiteOpenHelper(contex
     }
 
     fun insereSaudacao(id:Int, nome: String, tratamento: String){
+        // abertura do banco de dados para escrever e ler
         var db = this.writableDatabase
+
+        // utilizado para guardar um conjunto de valores
         var cv = ContentValues()
         cv.put("ID_SAUDACAO", id)
         cv.put("NOME", nome)
         cv.put("TRATAMENTO", tratamento)
+
+        // realizar uma inserção no banco de dados
         db.insert("SAUDACAO", "ID_SAUDACAO", cv)
     }
 
